@@ -14,8 +14,8 @@ final class ViewController: UIViewController {
     ]
     
     private lazy var collectionView: UICollectionView = {
-//        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: createFlowLayout(itemsPerRow: 3, itemsPerColumn: 5))
-        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: createCompositionalLayout())
+        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: createFlowLayout(itemsPerRow: 3, itemsPerColumn: 5))
+//        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: createCompositionalLayout())
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.backgroundColor = .white
         view.dataSource = self
@@ -66,13 +66,13 @@ extension ViewController {
         
         let widthPadding = layout.sectionInset.left * (itemsPerRow + 1)
         let heightPadding = layout.sectionInset.top * (itemsPerColumn + 1)
-        
         let cellWidth = (self.view.frame.width - widthPadding) / itemsPerRow
         let cellHeight = (self.view.frame.height - heightPadding) / itemsPerColumn
         
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
+        //        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
+        //        layout.itemSize = CGSize(width: self.view.frame.width , height: self.view.frame.height / 3)
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
+        layout.scrollDirection = .horizontal
         return layout
     }
 }
