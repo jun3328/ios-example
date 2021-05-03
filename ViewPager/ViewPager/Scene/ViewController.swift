@@ -41,19 +41,21 @@ final class ViewController: UIViewController {
         self.configure()
         self.makeConstraint()
     }
-    
+
     private func configure() {
-        self.view.addSubview(tabLayout)
-        self.view.addSubview(viewPager.view)
-        self.view.backgroundColor = .white
-        
         self.tabLayout.delegate = self
         self.tabLayout.dataSource = self
-        self.tabLayout.selectItem(at: .init(row: 0, section: 0), animated: false, scrollPosition: .bottom)
+        self.view.addSubview(tabLayout)
+        self.view.backgroundColor = .white
 
-        // Set Child View Controller
+        // add Child ViewController
         self.addChild(viewPager)
+        self.view.addSubview(viewPager.view)
         self.viewPager.didMove(toParent: self)
+
+        // init selection
+        tabLayout.selectItem(at: .init(row: 2, section: 0), animated: false, scrollPosition: .bottom)
+        viewPager.setViewControllers([viewPager.items[2]], direction: .forward, animated: false)
     }
 
     private func makeConstraint() {
