@@ -16,6 +16,7 @@
 		9B5A5C1F2625FA9600364BD3 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A5C1E2625FA9600364BD3 /* ColorViewController.swift */; };
 		9B5A5C222625FF4C00364BD3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A5C212625FF4C00364BD3 /* PageViewController.swift */; };
 		9BB8402B263FC3250014D99D /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8402A263FC3250014D99D /* Reusable.swift */; };
+		9BB8402F263FD7EF0014D99D /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8402E263FD7EF0014D99D /* Dimens.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9B5A5C1E2625FA9600364BD3 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		9B5A5C212625FF4C00364BD3 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		9BB8402A263FC3250014D99D /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		9BB8402E263FD7EF0014D99D /* Dimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +77,10 @@
 		9B5A5C2526260FDC00364BD3 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				9BB8402C263FD0250014D99D /* Child */,
 				9B5A5C2626260FF200364BD3 /* Cell */,
+				9BB8402C263FD0250014D99D /* Child */,
+				9BB8402D263FD7E40014D99D /* Dimens */,
+				9B5A5C1E2625FA9600364BD3 /* ColorViewController.swift */,
 				9B5A5C092625F19700364BD3 /* ViewController.swift */,
 			);
 			path = Scene;
@@ -94,10 +98,17 @@
 		9BB8402C263FD0250014D99D /* Child */ = {
 			isa = PBXGroup;
 			children = (
-				9B5A5C1E2625FA9600364BD3 /* ColorViewController.swift */,
 				9B5A5C212625FF4C00364BD3 /* PageViewController.swift */,
 			);
 			path = Child;
+			sourceTree = "<group>";
+		};
+		9BB8402D263FD7E40014D99D /* Dimens */ = {
+			isa = PBXGroup;
+			children = (
+				9BB8402E263FD7EF0014D99D /* Dimens.swift */,
+			);
+			path = Dimens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 				9B5A5C1F2625FA9600364BD3 /* ColorViewController.swift in Sources */,
 				9B5A5C1C2625F51900364BD3 /* TabItemCollectionViewCell.swift in Sources */,
 				9BB8402B263FC3250014D99D /* Reusable.swift in Sources */,
+				9BB8402F263FD7EF0014D99D /* Dimens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

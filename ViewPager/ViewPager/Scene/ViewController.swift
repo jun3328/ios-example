@@ -9,12 +9,6 @@ import UIKit
 
 final class ViewController: UIViewController {
 
-    private enum Dimens {
-        static let tabContentInset: UIEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        static let tabHeight: CGFloat = 60
-        static let tabMinimumInteritemSpacing: CGFloat = 20
-    }
-
     private let tabItem = ["브랜드", "상세옵션", "컬러/패턴", "가격"]
 
     private let tabLayout: UICollectionView = {
@@ -31,20 +25,13 @@ final class ViewController: UIViewController {
         return view
     }()
 
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     private let viewPager: PageViewController = {
-        let vc = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
-        vc.items = [
-            ColorViewController.newInstance(color: .yellow),
+        let vc = PageViewController(items:[
+            ColorViewController.newInstance(color: .red),
             ColorViewController.newInstance(color: .green),
             ColorViewController.newInstance(color: .blue),
-            ColorViewController.newInstance(color: .red),
-        ]
+            ColorViewController.newInstance(color: .yellow)
+        ])
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         return vc
     }()
@@ -57,15 +44,15 @@ final class ViewController: UIViewController {
     
     private func configure() {
         self.view.addSubview(tabLayout)
-        self.view.addSubview(containerView)
+        self.view.addSubview(viewPager.view)
         self.view.backgroundColor = .white
         
         self.tabLayout.delegate = self
         self.tabLayout.dataSource = self
-        self.tabLayout.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .bottom)
+        self.tabLayout.selectItem(at: .init(row: 0, section: 0), animated: false, scrollPosition: .bottom)
 
+        // Set Child View Controller
         self.addChild(viewPager)
-        self.containerView.addSubview(viewPager.view)
         self.viewPager.didMove(toParent: self)
     }
 
@@ -76,15 +63,10 @@ final class ViewController: UIViewController {
             self.tabLayout.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             self.tabLayout.heightAnchor.constraint(equalToConstant: Dimens.tabHeight),
             
-            self.containerView.topAnchor.constraint(equalTo: self.tabLayout.bottomAnchor),
-            self.containerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            self.containerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            self.containerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-            self.viewPager.view.topAnchor.constraint(equalTo: self.containerView.topAnchor),
-            self.viewPager.view.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor),
-            self.viewPager.view.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
-            self.viewPager.view.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+            self.viewPager.view.topAnchor.constraint(equalTo: self.tabLayout.bottomAnchor),
+            self.viewPager.view.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.viewPager.view.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.viewPager.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
 }
@@ -93,15 +75,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = viewPager.items[indexPath.row]
-
         viewPager.setViewControllers([vc], direction: .forward, animated: false)
-        
-//        pageViewControler.setViewControllers(
-//            [vc],
-//            direction: pageViewControler.currentIndex < indexPath.row ? .forward : .reverse,
-//            animated: true,
-//            completion: nil
-//        )
+        // direction: pageViewControler.currentIndex < indexPath.row ? .forward : .reverse,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -122,6 +97,7 @@ extension ViewController: UICollectionViewDataSource {
             cell.bind(name: tabItem[indexPath.row])
             cell.bind(isSelected: collectionView.indexPathsForSelectedItems?.first == indexPath)
         }
+
         return cell
     }
 }

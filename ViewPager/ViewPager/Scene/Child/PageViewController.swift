@@ -13,6 +13,11 @@ final class PageViewController: UIPageViewController {
     
     var items: [UIViewController] = []
     
+    convenience init(items: [UIViewController]) {
+        self.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        self.items = items
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
